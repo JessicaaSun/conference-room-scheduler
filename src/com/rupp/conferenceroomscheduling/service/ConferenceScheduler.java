@@ -1,4 +1,9 @@
-import java.awt.*;
+package com.rupp.conferenceroomscheduling.service;
+
+import com.rupp.conferenceroomscheduling.model.ConferenceRoom;
+import com.rupp.conferenceroomscheduling.model.Reservation;
+import com.rupp.conferenceroomscheduling.util.Colors;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +42,7 @@ public class ConferenceScheduler {
     public boolean cancelReservation(String roomName, String meetingName, String organizer) {
         for (ConferenceRoom room : conferenceRooms) {
             if (room.getRoomName().equals(roomName) && room.cancelReservation(meetingName, organizer)) {
-                System.out.println(Colors.ANSI_GREEN +"✓ Reservation cancelled successfully."+Colors.ANSI_RESET);
+                System.out.println(Colors.ANSI_GREEN +"✓ com.rupp.conferenceroomscheduling.model.Reservation cancelled successfully."+Colors.ANSI_RESET);
                 return true;
             }
         }

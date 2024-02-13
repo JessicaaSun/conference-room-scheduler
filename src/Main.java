@@ -1,3 +1,8 @@
+import com.rupp.conferenceroomscheduling.model.ConferenceRoom;
+import com.rupp.conferenceroomscheduling.model.Reservation;
+import com.rupp.conferenceroomscheduling.service.ConferenceScheduler;
+import com.rupp.conferenceroomscheduling.util.Colors;
+
 import java.util.Scanner;
 
 public class Main {

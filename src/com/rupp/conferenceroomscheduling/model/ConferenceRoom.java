@@ -1,3 +1,7 @@
+package com.rupp.conferenceroomscheduling.model;
+
+import com.rupp.conferenceroomscheduling.util.Colors;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +25,11 @@ public class ConferenceRoom {
             }
         }
         if (reservation.getAttendees() > this.capacity) {
-            System.out.println(Colors.ANSI_RED + "ⓘ Cannot book " + roomName + ": number of attendees (" + reservation.getAttendees() + ") exceeds room capacity (" + capacity + ")." +Colors.ANSI_RESET);
+            System.out.println(Colors.ANSI_RED + "ⓘ Cannot book " + roomName + ": number of attendees (" + reservation.getAttendees() + ") exceeds room capacity (" + capacity + ")." + Colors.ANSI_RESET);
             return false;
         }
         reservations.add(reservation);
-        System.out.println(Colors.ANSI_GREEN +"✓ Room " + roomName + " booked successfully for " + reservation.getMeetingName() + "."+Colors.ANSI_RESET);
+        System.out.println(Colors.ANSI_GREEN +"✓ Room " + roomName + " booked successfully for " + reservation.getMeetingName() + "."+ Colors.ANSI_RESET);
         return true;
     }
 
