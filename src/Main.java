@@ -15,8 +15,7 @@ public class Main {
                 █████╗  ███████╗          ██║███████║██║   ██║███████║
                 ██╔══╝  ██╔═══██╗    ██   ██║██╔══██║╚██╗ ██╔╝██╔══██║
                 ███████╗╚██████╔╝    ╚█████╔╝██║  ██║ ╚████╔╝ ██║  ██║
-                ╚══════╝ ╚═════╝      ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝
-                                                                     \s
+                ╚══════╝ ╚═════╝      ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝\s
                 """;
         System.out.println(Colors.ANSI_PURPLE_BOLD + display + Colors.ANSI_RESET);
 
@@ -24,7 +23,7 @@ public class Main {
 
         boolean running = true;
         while (running) {
-
+            System.out.println();
             System.out.println("+" + "-".repeat(39) + "+");
             System.out.println(Colors.ANSI_PURPLE_BOLD+"|       Conference Room Scheduler       |"+Colors.ANSI_RESET);
             System.out.println("+" + "-".repeat(39) + "+");
