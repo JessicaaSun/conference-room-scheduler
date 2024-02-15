@@ -3,6 +3,9 @@ package com.rupp.conferenceroomscheduling.service;
 import com.rupp.conferenceroomscheduling.model.ConferenceRoom;
 import com.rupp.conferenceroomscheduling.model.Reservation;
 import com.rupp.conferenceroomscheduling.util.Colors;
+import org.nocrala.tools.texttablefmt.BorderStyle;
+import org.nocrala.tools.texttablefmt.ShownBorders;
+import org.nocrala.tools.texttablefmt.Table;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -62,23 +65,36 @@ public class ConferenceScheduler {
                 .ifPresentOrElse(
                         room -> {
                             System.out.println(Colors.ANSI_PURPLE_BOLD + "Reservations for " + roomName + ":" + Colors.ANSI_RESET);
-                            System.out.printf("+-----------------+----------------+------------------+-------------------+----------------+------------------+%n");
-                            System.out.printf("| %-15s | %-14s | %-17s | %-17s | %-14s | %-15s |%n", "Meeting Name", "Organizer", "Start Date", "End Date", "Duration", "Attendees");
-                            System.out.printf("+-----------------+----------------+----------------+-------------------+----------------+------------------+%n");
+                            Table table = new Table(6, BorderStyle.UNICODE_BOX_DOUBLE_BORDER_WIDE, ShownBorders.ALL);
+                            table.setColumnWidth(0,10,20);
+                            table.setColumnWidth(1,10,20);
+                            table.setColumnWidth(2,10,20);
+                            table.setColumnWidth(3,10,20);
+                            table.setColumnWidth(4,10,20);
+                            table.addCell("Meeting Name");
+                            table.addCell("Organizer");
+                            table.addCell("Start Date");
+                            table.addCell("End Date");
+                            table.addCell("Duration");
+                            table.addCell("Attendee");
 
+                            // Add reservation details to the table
                             room.getReservations().forEach(reservation -> {
-                                System.out.printf("| %-15s | %-14s | %-17s | %-17s | %-14s | %-15d |%n",
-                                        reservation.getMeetingName(),
-                                        reservation.getOrganizer(),
-                                        reservation.getStartTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
-                                        reservation.getEndTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
-                                        reservation.getDurationFormatted(),
-                                        reservation.getAttendees());
+                                table.addCell(reservation.getMeetingName());
+                                table.addCell(reservation.getOrganizer());
+                                table.addCell(reservation.getStartTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                                table.addCell(reservation.getEndTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                                table.addCell(reservation.getDurationFormatted());
+                                String getAddt = String.valueOf(reservation.getAttendees());
+                                table.addCell(getAddt);
                             });
+                            // Render the table after adding reservation details
+                            System.out.println(table.render());
 
-                            System.out.printf("+-----------------+----------------+------------------+-------------------+----------------+-----------------+%n");
                         },
                         () -> System.out.println(Colors.ANSI_RED+"ⓘ Conference room not found."+Colors.ANSI_RESET)
                 );
+
     }
+
 }

@@ -81,16 +81,22 @@ public class Main {
         System.out.print("➜ Enter organizer's name: ");
         String organizer = scanner.nextLine();
 
-        System.out.print("➜ Enter number of attendees: ");
-        int attendees = scanner.nextInt();
-        scanner.nextLine();
+        int attendees;
+        while(true){
+            System.out.print("➜ Enter number of attendees: ");
+            attendees = scanner.nextInt();
+            scanner.nextLine();
 
-        if (attendees > room.getCapacity()) {
-            System.out.println(Colors.ANSI_RED + "ⓘ Cannot book '" + roomName + "': number of attendees (" + attendees + ") exceeds room capacity (" + room.getCapacity() + ")." + Colors.ANSI_RESET);
-            return;
-        } else if (attendees <= 0) {
-            System.out.println(Colors.ANSI_YELLOW + "ⓘ Number of attendees must be greater than 0."+ Colors.ANSI_RESET);
-            return;
+            if (attendees > room.getCapacity()) {
+                System.out.println(Colors.ANSI_RED + "ⓘ Cannot book '" + roomName + "': number of attendees (" + attendees + ") exceeds room capacity (" + room.getCapacity() + ")." + Colors.ANSI_RESET);
+
+            } else if (attendees <= 0) {
+                System.out.println(Colors.ANSI_YELLOW + "ⓘ Number of attendees must be greater than 0."+ Colors.ANSI_RESET);
+
+
+            } else {
+                break;
+            }
         }
 
         Reservation reservation = null;
